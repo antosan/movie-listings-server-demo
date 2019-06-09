@@ -8,6 +8,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASS,
     database: process.env.DB_NAME
 });
+const port = process.env.PORT || 9000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -472,4 +473,4 @@ app.delete("/showtimes/:id", (req, res) => {
     );
 });
 
-app.listen(9000, () => console.log("App listening on port 9000"));
+app.listen(port, () => console.log(`App listening on port ${port}`));
