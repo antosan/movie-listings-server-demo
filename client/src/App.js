@@ -1,7 +1,11 @@
 import React from "react";
+import { Router } from "@reach/router";
 import NavBar from "./NavBar";
 import MovieList from "./MovieList";
 import "./App.css";
+
+const Cinema = () => <div>Cinema Page</div>;
+const Admin = () => <div>Admin Page</div>;
 
 function App() {
 	return (
@@ -10,7 +14,11 @@ function App() {
 				<NavBar />
 			</header>
 			<main className="mvls-main">
-				<MovieList />
+				<Router>
+					<MovieList path="/" />
+					<Cinema path="/cinemas" />
+					<Admin path="/admin" />
+				</Router>
 			</main>
 		</div>
 	);

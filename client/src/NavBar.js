@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 function NavBar() {
 	return (
 		<div className="mvls-container">
 			<nav className="mvls-nav">
 				<span className="mvls-title">Movie Listings</span>
-				<a href="/">Movies</a>
-				<a href="/cinemas">Cinemas</a>
-				<a href="/admin">Admin</a>
+				<Link to="/">Movies</Link>
+				<Link to="/cinemas">Cinemas</Link>
+				<Link to="/admin">Admin</Link>
 			</nav>
 		</div>
 	);
