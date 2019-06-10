@@ -1,0 +1,104 @@
+.mvls-header {
+	width: 100%;
+	margin: 0;
+	position: fixed;
+	z-index: 100;
+	background: #fff;
+}
+
+.mvls-container {
+	position: relative;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 6px;
+}
+
+@media (min-width: 720px) {
+	.mvls-container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+.mvls-header .mvls-container {
+	padding: 0 12px;
+}
+
+.mvls-nav {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	min-height: 48px;
+}
+
+.mvls-nav .mvls-title {
+	font-size: 1.5rem;
+	margin-right: 10px;
+}
+
+.mvls-nav a {
+	font-size: 0.875rem;
+	margin-right: 10px;
+	color: #4299e1;
+	text-decoration: none;
+}
+
+.mvls-main {
+	padding: 51px 0 40px;
+}
+
+.mvls-movie-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.mvls-movie {
+	border-radius: 0.25rem;
+	background-color: #fff;
+	margin: 15px;
+	width: 280px;
+}
+
+.mvls-movie .mvls-poster {
+	width: 100%;
+	height: 280px;
+	object-fit: cover;
+}
+
+.mvls-movie-body {
+	padding: 1rem 1.5rem;
+	text-align: center;
+}
+
+.mvls-movie .mvls-title {
+	font-size: 1.25rem;
+	margin-bottom: 0.5rem;
+	font-weight: 700;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.mvls-movie .mvls-cinema-count {
+	font-size: 1rem;
+	color: #4a5568;
+}
+
+.mvls-movie-footer {
+	padding: 15px 15px 30px;
+	text-align: center;
+}
+
+.mvls-btn {
+	color: #fff;
+	padding: 0.5rem 1rem;
+	font-weight: 700;
+	border-radius: 0.25rem;
+	background-color: #4299e1;
+}
+
+.mvls-btn.mvls-btn-cinemas {
+	padding: 0.5rem 3.5rem;
+	text-decoration: none;
+}
