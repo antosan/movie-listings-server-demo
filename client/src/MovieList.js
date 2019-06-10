@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
+import Loading from "./Loading";
+import Error from "./Error";
 
 class MovieList extends React.Component {
 	constructor(props) {
@@ -17,7 +19,7 @@ class MovieList extends React.Component {
 	}
 
 	fetchMoviesShowing() {
-		this.setState({ loading: true });
+		this.setState({ loading: true, error: false });
 
 		axios
 			.get("/api/moviesshowing")
@@ -38,7 +40,15 @@ class MovieList extends React.Component {
 	}
 
 	render() {
-		const { moviesShowing } = this.state;
+		const { moviesShowing, loading, error } = this.state;
+
+		if (loading) {
+			return <Loading />;
+		}
+
+		if (error) {
+			return <Error />;
+		}
 
 		return (
 			<div className="mvls-container">
