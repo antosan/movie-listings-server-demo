@@ -44,7 +44,7 @@
 }
 
 .mvls-main {
-	padding: 51px 0 40px;
+	padding-top: 51px;
 }
 
 .mvls-movie-list {
@@ -105,4 +105,27 @@
 .mvls-btn.mvls-btn-cinemas {
 	padding: 0.5rem 3.5rem;
 	text-decoration: none;
+}
+
+.mvls-fullpage-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 51px);
+    width: 100%;
+}
+
+.mvls-fullpage-text > p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #606f7b;
+    margin: 2rem;
+    text-align: center;
+}
+
+@media (min-width: 720px) {
+    .mvls-fullpage-text > p {
+        font-size: 1.875rem;
+    }
 }
