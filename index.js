@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => res.json({ message: "Hello World!" }));
 
-app.get("/cinemas", (req, res) => {
+app.get("/api/cinemas", (req, res) => {
     pool.query("SELECT id, name FROM cinema", (error, rows) => {
         if (error) {
             return res.status(500).json({ error });
@@ -25,7 +25,7 @@ app.get("/cinemas", (req, res) => {
     });
 });
 
-app.get("/cinemas/:id", (req, res) => {
+app.get("/api/cinemas/:id", (req, res) => {
     pool.query(
         "SELECT id, name FROM cinema WHERE id = ?",
         [req.params.id],
@@ -39,7 +39,7 @@ app.get("/cinemas/:id", (req, res) => {
     );
 });
 
-app.get("/cinemas/:id/movies", (req, res) => {
+app.get("/api/cinemas/:id/movies", (req, res) => {
     pool.query(
         `SELECT s.time, m.id, m.title, m.description, m.duration, m.release_year, m.poster_url, GROUP_CONCAT(g.description) genres
         FROM showtime s
@@ -59,7 +59,7 @@ app.get("/cinemas/:id/movies", (req, res) => {
     );
 });
 
-app.get("/movies/:id", (req, res) => {
+app.get("/api/movies/:id", (req, res) => {
     pool.query(
         `SELECT m.id, m.title, m.description, m.duration, m.release_year, m.poster_url, GROUP_CONCAT(g.description) genres
         FROM movie m
@@ -77,7 +77,7 @@ app.get("/movies/:id", (req, res) => {
     );
 });
 
-app.get("/movies/:id/cinemas", (req, res) => {
+app.get("/api/movies/:id/cinemas", (req, res) => {
     pool.query(
         `SELECT s.cinema_id, s.time, c.name
         FROM showtime s
@@ -95,7 +95,7 @@ app.get("/movies/:id/cinemas", (req, res) => {
     );
 });
 
-app.get("/moviesshowing", (req, res) => {
+app.get("/api/moviesshowing", (req, res) => {
     pool.query(
         `SELECT m.id, m.title, m.poster_url, COUNT(DISTINCT s.cinema_id) as cinema_count
         FROM movie m
@@ -112,7 +112,7 @@ app.get("/moviesshowing", (req, res) => {
     );
 });
 
-app.get("/movies", (req, res) => {
+app.get("/api/movies", (req, res) => {
     pool.query(
         `SELECT m.id, m.title, m.description, m.duration, m.release_year, m.poster_url, GROUP_CONCAT(g.description) genres
         FROM movie m
@@ -129,7 +129,7 @@ app.get("/movies", (req, res) => {
     );
 });
 
-app.get("/showtimes", (req, res) => {
+app.get("/api/showtimes", (req, res) => {
     pool.query(
         `SELECT s.id, s.cinema_id, s.movie_id, s.time, c.name cinema_name, m.title movie_title
         FROM showtime s
@@ -146,7 +146,7 @@ app.get("/showtimes", (req, res) => {
     );
 });
 
-app.post("/cinemas", (req, res) => {
+app.post("/api/cinemas", (req, res) => {
     const cinema = req.body;
 
     if (!cinema.name) {
@@ -166,7 +166,7 @@ app.post("/cinemas", (req, res) => {
     );
 });
 
-app.put("/cinemas/:id", (req, res) => {
+app.put("/api/cinemas/:id", (req, res) => {
     const cinema = req.body;
 
     if (!cinema.name) {
@@ -186,7 +186,7 @@ app.put("/cinemas/:id", (req, res) => {
     );
 });
 
-app.delete("/cinemas/:id", (req, res) => {
+app.delete("/api/cinemas/:id", (req, res) => {
     pool.query(
         "DELETE FROM cinema WHERE id = ?",
         [req.params.id],
@@ -200,7 +200,7 @@ app.delete("/cinemas/:id", (req, res) => {
     );
 });
 
-app.post("/movies", (req, res) => {
+app.post("/api/movies", (req, res) => {
     const {
         title,
         release_year,
@@ -273,7 +273,7 @@ app.post("/movies", (req, res) => {
     });
 });
 
-app.put("/movies/:id", (req, res) => {
+app.put("/api/movies/:id", (req, res) => {
     const {
         title,
         release_year,
@@ -367,7 +367,7 @@ app.put("/movies/:id", (req, res) => {
     });
 });
 
-app.delete("/movies/:id", (req, res) => {
+app.delete("/api/movies/:id", (req, res) => {
     const movieId = req.params.id;
 
     pool.getConnection((error, connection) => {
@@ -419,7 +419,7 @@ app.delete("/movies/:id", (req, res) => {
     });
 });
 
-app.post("/showtimes", (req, res) => {
+app.post("/api/showtimes", (req, res) => {
     const { cinema_id, movie_id, time } = req.body;
 
     if (!cinema_id || !movie_id || !time) {
@@ -439,7 +439,7 @@ app.post("/showtimes", (req, res) => {
     );
 });
 
-app.put("/showtimes/:id", (req, res) => {
+app.put("/api/showtimes/:id", (req, res) => {
     const { cinema_id, movie_id, time } = req.body;
 
     if (!cinema_id || !movie_id || !time) {
@@ -459,7 +459,7 @@ app.put("/showtimes/:id", (req, res) => {
     );
 });
 
-app.delete("/showtimes/:id", (req, res) => {
+app.delete("/api/showtimes/:id", (req, res) => {
     pool.query(
         "DELETE FROM showtime WHERE id = ?",
         [req.params.id],
