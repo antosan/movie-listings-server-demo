@@ -15,10 +15,10 @@ class MovieDetails extends React.Component {
 	}
 
 	componentDidMount() {
-		this.fetchMoviesShowing();
+		this.fetchMovieDetails();
 	}
 
-	fetchMoviesShowing() {
+	fetchMovieDetails() {
 		this.setState({ loading: true, error: false });
 
 		const { movieId } = this.props;
