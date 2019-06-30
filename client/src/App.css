@@ -108,24 +108,105 @@
 }
 
 .mvls-fullpage-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 51px);
-    width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - 51px);
+	width: 100%;
 }
 
 .mvls-fullpage-text > p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    line-height: 1.5;
-    color: #606f7b;
-    margin: 2rem;
-    text-align: center;
+	font-size: 1.5rem;
+	font-weight: 300;
+	line-height: 1.5;
+	color: #606f7b;
+	margin: 2rem;
+	text-align: center;
 }
 
 @media (min-width: 720px) {
-    .mvls-fullpage-text > p {
-        font-size: 1.875rem;
+	.mvls-fullpage-text > p {
+		font-size: 1.875rem;
+	}
+}
+
+.mvls-movie-details-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.mvls-movie-details {
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	margin: 15px;
+	width: 280px;
+}
+
+@media (min-width: 720px) {
+	.mvls-movie-details-wrapper {
+		padding: 0.5rem 1rem;
     }
+
+	.mvls-movie-details {
+		flex-direction: row;
+		width: 100%;
+	}
+}
+
+.mvls-movie-details .mvls-movie-details-poster {
+    display: flex;
+    align-self: center;
+	min-width: 280px;
+	max-width: 280px;
+	height: 280px;
+	object-fit: cover;
+	background: url("./no-poster.jpg") 0px 0px no-repeat;
+}
+
+.mvls-movie-details-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1rem 1.5rem;
+}
+
+.mvls-movie-details-info h2 {
+	margin: 8px 0;
+}
+
+.mvls-movie-details-info p {
+	margin: 4px 0;
+}
+
+.mvls-movie-details-info p span {
+	font-weight: bold;
+}
+
+.mvls-movie-cinemas {
+	padding: 0.5rem 1rem;
+}
+
+.mvls-movie-cinema {
+	border-radius: 0.25rem;
+	background-color: #fff;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.mvls-movie-cinema p:last-child {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.mvls-movie-cinema p span {
+	border: 1px solid #777;
+	border-radius: 1rem;
+	background-color: #ddd;
+	padding: 5px 10px;
+	margin: 5px 10px 5px 0;
+	white-space: nowrap;
 }
