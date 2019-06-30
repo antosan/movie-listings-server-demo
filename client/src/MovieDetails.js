@@ -39,7 +39,8 @@ class MovieDetails extends React.Component {
 			)
 			.catch(error => {
 				this.setState({
-					moviesShowing: [],
+					movieDetails: [],
+					cinemas: [],
 					loading: false,
 					error: true
 				});
