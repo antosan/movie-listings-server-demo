@@ -155,7 +155,7 @@
 @media (min-width: 720px) {
 	.mvls-movie-details-wrapper {
 		padding: 0.5rem 1rem;
-    }
+	}
 
 	.mvls-movie-details {
 		flex-direction: row;
@@ -164,8 +164,8 @@
 }
 
 .mvls-movie-details .mvls-movie-details-poster {
-    display: flex;
-    align-self: center;
+	display: flex;
+	align-self: center;
 	min-width: 280px;
 	max-width: 280px;
 	height: 280px;
@@ -209,6 +209,7 @@
 	flex-wrap: wrap;
 }
 
+.mvls-movie-details-info p span.time,
 .mvls-movie-cinema p span {
 	border: 1px solid #777;
 	border-radius: 1rem;
@@ -216,4 +217,12 @@
 	padding: 5px 10px;
 	margin: 5px 10px 5px 0;
 	white-space: nowrap;
+}
+
+.mvls-container h1 {
+	padding: 0.5rem 1rem;
+}
+
+.mvls-movie-details-info p span.time {
+	font-weight: normal;
 }
