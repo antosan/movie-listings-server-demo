@@ -21,7 +21,7 @@ function Movie({ movieShowing }) {
 				<p className="mvls-cinema-count">{cinemaText}</p>
 			</div>
 			<div className="mvls-movie-footer">
-				<Link to={`movie/${id}`} className="mvls-btn mvls-btn-cinemas">
+				<Link to={`/movie/${id}`} className="mvls-btn mvls-btn-cinemas">
 					See Cinemas
 				</Link>
 			</div>

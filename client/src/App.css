@@ -47,6 +47,7 @@
 	padding-top: 51px;
 }
 
+.mvls-cinema-list,
 .mvls-movie-list {
 	display: flex;
 	flex-direction: row;
@@ -54,6 +55,7 @@
 	justify-content: center;
 }
 
+.mvls-cinema,
 .mvls-movie {
 	display: flex;
 	flex-direction: column;
@@ -63,6 +65,7 @@
 	width: 280px;
 }
 
+.mvls-cinema .mvls-poster,
 .mvls-movie .mvls-poster {
 	width: 100%;
 	height: 280px;
@@ -70,11 +73,13 @@
 	background: url("./no-poster.jpg") 0px 0px no-repeat;
 }
 
+.mvls-cinema-body,
 .mvls-movie-body {
 	padding: 1rem 1.5rem;
 	text-align: center;
 }
 
+.mvls-cinema .mvls-title,
 .mvls-movie .mvls-title {
 	font-size: 1.25rem;
 	margin-bottom: 0.5rem;
@@ -89,6 +94,7 @@
 	color: #4a5568;
 }
 
+.mvls-cinema-footer,
 .mvls-movie-footer {
 	padding: 15px 15px 30px;
 	text-align: center;
@@ -102,6 +108,7 @@
 	background-color: #4299e1;
 }
 
+.mvls-btn.mvls-btn-movies,
 .mvls-btn.mvls-btn-cinemas {
 	padding: 0.5rem 3.5rem;
 	text-decoration: none;
