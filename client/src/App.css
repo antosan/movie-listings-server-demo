@@ -45,6 +45,7 @@
 
 .mvls-main {
 	padding-top: 51px;
+	padding-bottom: 100px;
 }
 
 .mvls-cinema-list,
@@ -225,4 +226,143 @@
 
 .mvls-movie-details-info p span.time {
 	font-weight: normal;
+}
+
+.mvls-cinema-admin h1 {
+	padding: 0;
+}
+
+.mvls-alert {
+	position: relative;
+	padding: 0.75rem 1.25rem;
+	margin: 1rem 0;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+}
+
+.mvls-alert.mvls-alert-success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.mvls-alert.mvls-alert-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.mvls-table-loading {
+	text-align: center;
+}
+
+.mvls-form .mvls-form-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.mvls-form .mvls-form-col {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.mvls-form label {
+	width: 100%;
+	padding-top: 0.375rem;
+	padding-bottom: 0.375rem;
+	line-height: 1.5;
+}
+
+.mvls-form input[type="text"],
+.mvls-form input[type="number"] {
+	display: block;
+	width: 100%;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	background-color: #fff;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+}
+
+.mvls-form .mvls-form-input-group {
+	width: 100%;
+}
+
+.mvls-form .mvls-form-input-error {
+	display: block;
+	width: 100%;
+	margin-top: 0.25rem;
+	font-size: 80%;
+	color: #dc3545;
+}
+
+.mvls-form input.has-error {
+	border: 1px solid #dc3545;
+}
+
+.mvls-btn.mvls-btn-form {
+	margin-right: 15px;
+	border: 1px solid #4299e1;
+}
+
+.mvls-btn.mvls-btn-form[disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+@media (min-width: 720px) {
+	.mvls-form .mvls-form-col {
+		display: flex;
+		flex: 0 0 49%;
+		max-width: 49%;
+	}
+
+	.mvls-form label {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+
+	.mvls-form .mvls-form-input-group {
+		flex: 0 0 75%;
+		max-width: 75%;
+	}
+}
+
+.mvls-table {
+	display: block;
+	width: 100%;
+	overflow-x: auto;
+}
+
+.mvls-table table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	white-space: nowrap;
+}
+
+.mvls-table table th,
+.mvls-table table td {
+	border-top: 1px solid #999;
+	padding: 0.75rem;
+}
+
+.mvls-table table thead th {
+	border-bottom: 2px solid #999;
+	background-color: rgba(0, 0, 0, 0.075);
+	text-align: left;
+}
+
+.mvls-table table tbody tr:hover {
+	background-color: rgba(0, 0, 0, 0.075);
+}
+
+.mvls-table table .mvls-table-link {
+	color: #1a0dab;
+	cursor: pointer;
+	text-decoration: underline;
 }
