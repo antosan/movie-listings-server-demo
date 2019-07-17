@@ -228,6 +228,7 @@
 	font-weight: normal;
 }
 
+.mvls-movie-admin h1,
 .mvls-cinema-admin h1 {
 	padding: 0;
 }
@@ -275,6 +276,7 @@
 }
 
 .mvls-form input[type="text"],
+.mvls-form textarea,
 .mvls-form input[type="number"] {
 	display: block;
 	width: 100%;
@@ -299,6 +301,7 @@
 	color: #dc3545;
 }
 
+.mvls-form textarea.has-error,
 .mvls-form input.has-error {
 	border: 1px solid #dc3545;
 }
@@ -365,4 +368,15 @@
 	color: #1a0dab;
 	cursor: pointer;
 	text-decoration: underline;
+}
+
+.mvls-form .mvls-checkbox-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mvls-form .mvls-checkbox-group label {
+	flex: 0 0 50%;
+	max-width: 50%;
 }
