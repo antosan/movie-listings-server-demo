@@ -142,7 +142,7 @@ class MovieDetails extends React.Component {
 							</p>
 							<p>
 								<span>Year</span>: {release_year}
-                            </p>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -152,7 +152,10 @@ class MovieDetails extends React.Component {
 						const { cinemaName, datePlaying, times } = cinema;
 
 						return (
-							<div key={cinemaName} className="mvls-movie-cinema">
+							<div
+								key={`${cinemaName}:${datePlaying}`}
+								className="mvls-movie-cinema"
+							>
 								<h3>{cinemaName}</h3>
 								<p>{datePlaying}</p>
 								<p>
