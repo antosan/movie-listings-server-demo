@@ -370,10 +370,16 @@
 	text-decoration: underline;
 }
 
+.mvls-table table tbody tr td.mvls-no-data {
+	text-align: center;
+	padding: 32px 0;
+	color: rgba(0, 0, 0, 0.25);
+}
+
 .mvls-form .mvls-checkbox-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .mvls-form .mvls-checkbox-group label {

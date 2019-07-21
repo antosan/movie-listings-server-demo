@@ -39,8 +39,10 @@ function MovieTable({
 				</thead>
 				{movies.length === 0 && (
 					<tbody>
-						<tr colSpan="8">
-							<td>No data</td>
+						<tr>
+							<td colSpan="8" className="mvls-no-data">
+								No data
+							</td>
 						</tr>
 					</tbody>
 				)}

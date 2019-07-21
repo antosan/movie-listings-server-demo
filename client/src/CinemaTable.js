@@ -34,8 +34,10 @@ function CinemaTable({
 				</thead>
 				{cinemas.length === 0 && (
 					<tbody>
-						<tr colSpan="3">
-							<td>No data</td>
+						<tr>
+							<td colSpan="3" className="mvls-no-data">
+								No data
+							</td>
 						</tr>
 					</tbody>
 				)}
