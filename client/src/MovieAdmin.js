@@ -18,9 +18,6 @@ class MovieAdmin extends React.Component {
 			validationErrors: {},
 			formSuccess: false,
 			formError: false,
-			movies: [],
-			tableLoading: false,
-			tableError: false,
 			deleteSuccess: false
 		};
 
@@ -30,35 +27,6 @@ class MovieAdmin extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleEditMovie = this.handleEditMovie.bind(this);
 		this.handleDeleteMovie = this.handleDeleteMovie.bind(this);
-	}
-
-	componentDidMount() {
-		this.fetchMovies();
-	}
-
-	fetchMovies() {
-		this.setState({ tableLoading: true, tableError: false });
-
-		axios
-			.get("/api/movies")
-			.then(response => {
-				this.setState({
-					movies: response.data.map(data => ({
-						...data,
-						releaseYear: data.release_year,
-						posterUrl: data.poster_url
-					})),
-					tableLoading: false,
-					tableError: false
-				});
-			})
-			.catch(error => {
-				this.setState({
-					movies: [],
-					tableLoading: false,
-					tableError: true
-				});
-			});
 	}
 
 	resetFormState() {
@@ -158,7 +126,6 @@ class MovieAdmin extends React.Component {
 
 		const {
 			editing,
-			movies,
 			id,
 			title,
 			releaseYear,
@@ -167,6 +134,7 @@ class MovieAdmin extends React.Component {
 			description,
 			genres
 		} = this.state;
+		const { movies, updateMovies } = this.props;
 
 		if (this.isValid()) {
 			this.setState({
@@ -193,21 +161,22 @@ class MovieAdmin extends React.Component {
 						const index = movies.findIndex(c => c.id === id);
 
 						this.setState({
-							formSuccess: true,
-							movies: [
-								...movies.slice(0, index),
-								{
-									id,
-									title,
-									releaseYear,
-									duration,
-									posterUrl,
-									description,
-									genres: genres.join(",")
-								},
-								...movies.slice(index + 1)
-							]
+							formSuccess: true
 						});
+
+						updateMovies([
+							...movies.slice(0, index),
+							{
+								id,
+								title,
+								releaseYear,
+								duration,
+								posterUrl,
+								description,
+								genres: genres.join(",")
+							},
+							...movies.slice(index + 1)
+						]);
 					})
 					.catch(error => {
 						this.setState({
@@ -231,20 +200,21 @@ class MovieAdmin extends React.Component {
 					.then(response => {
 						this.resetFormState();
 						this.setState({
-							formSuccess: true,
-							movies: [
-								...movies,
-								{
-									id: response.data,
-									title,
-									releaseYear,
-									duration,
-									posterUrl,
-									description,
-									genres: genres.join(",")
-								}
-							]
+							formSuccess: true
 						});
+
+						updateMovies([
+							...movies,
+							{
+								id: response.data,
+								title,
+								releaseYear,
+								duration,
+								posterUrl,
+								description,
+								genres: genres.join(",")
+							}
+						]);
 					})
 					.catch(error => {
 						this.setState({
@@ -271,6 +241,7 @@ class MovieAdmin extends React.Component {
 	handleDeleteMovie(movie, movies) {
 		return () => {
 			const { id, title } = movie;
+			const { updateMovies } = this.props;
 
 			// eslint-disable-next-line no-restricted-globals
 			if (confirm(`Are you sure you want to delete '${title}'?`)) {
@@ -280,18 +251,17 @@ class MovieAdmin extends React.Component {
 						const index = movies.findIndex(c => c.id === id);
 
 						this.setState({
-							movies: [
-								...movies.slice(0, index),
-								...movies.slice(index + 1)
-							],
-							deleteSuccess: true,
-							tableError: false
+							deleteSuccess: true
 						});
+
+						updateMovies([
+							...movies.slice(0, index),
+							...movies.slice(index + 1)
+						]);
 					})
 					.catch(error => {
 						this.setState({
-							deleteSuccess: false,
-							tableError: true
+							deleteSuccess: false
 						});
 					});
 			}
@@ -311,16 +281,14 @@ class MovieAdmin extends React.Component {
 			validationErrors,
 			formSuccess,
 			formError,
-			movies,
-			tableLoading,
-			tableError,
 			deleteSuccess
 		} = this.state;
+		const { movies, moviesLoading, moviesError } = this.props;
 
 		return (
 			<div className="mvls-movie-admin">
 				<h1>Movies</h1>
-				<h3>{editing ? "Edit Movie": "Add Movie"}</h3>
+				<h3>{editing ? "Edit Movie" : "Add Movie"}</h3>
 				<MovieForm
 					title={title}
 					releaseYear={releaseYear}
@@ -339,8 +307,8 @@ class MovieAdmin extends React.Component {
 				/>
 				<MovieTable
 					movies={movies}
-					tableLoading={tableLoading}
-					tableError={tableError}
+					tableLoading={moviesLoading}
+					tableError={moviesError}
 					deleteSuccess={deleteSuccess}
 					onEditMovie={this.handleEditMovie}
 					onDeleteMovie={this.handleDeleteMovie}

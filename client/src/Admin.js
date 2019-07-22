@@ -9,14 +9,19 @@ class Admin extends React.Component {
 		this.state = {
 			cinemas: [],
 			cinemasLoading: false,
-			cinemasError: false
+			cinemasError: false,
+			movies: [],
+			moviesLoading: false,
+			moviesError: false
 		};
 
 		this.updateCinemas = this.updateCinemas.bind(this);
+		this.updateMovies = this.updateMovies.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchCinemas();
+		this.fetchMovies();
 	}
 
 	fetchCinemas() {
@@ -40,12 +45,48 @@ class Admin extends React.Component {
 			});
 	}
 
+	fetchMovies() {
+		this.setState({ moviesLoading: true, moviesError: false });
+
+		axios
+			.get("/api/movies")
+			.then(response => {
+				this.setState({
+					movies: response.data.map(data => ({
+						...data,
+						releaseYear: data.release_year,
+						posterUrl: data.poster_url
+					})),
+					moviesLoading: false,
+					moviesError: false
+				});
+			})
+			.catch(error => {
+				this.setState({
+					movies: [],
+					moviesLoading: false,
+					moviesError: true
+				});
+			});
+	}
+
 	updateCinemas(cinemas) {
 		this.setState({ cinemas });
 	}
 
+	updateMovies(movies) {
+		this.setState({ movies });
+	}
+
 	render() {
-		const { cinemas, cinemasLoading, cinemasError } = this.state;
+		const {
+			cinemas,
+			cinemasLoading,
+			cinemasError,
+			movies,
+			moviesLoading,
+			moviesError
+		} = this.state;
 
 		return (
 			<div className="mvls-container">
@@ -55,7 +96,12 @@ class Admin extends React.Component {
 					cinemasError={cinemasError}
 					updateCinemas={this.updateCinemas}
 				/>
-				<MovieAdmin />
+				<MovieAdmin
+					movies={movies}
+					moviesLoading={moviesLoading}
+					moviesError={moviesError}
+					updateMovies={this.updateMovies}
+				/>
 			</div>
 		);
 	}
