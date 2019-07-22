@@ -13,9 +13,6 @@ class CinemaAdmin extends React.Component {
 			validationErrors: {},
 			formSuccess: false,
 			formError: false,
-			cinemas: [],
-			tableLoading: false,
-			tableError: false,
 			deleteSuccess: false
 		};
 
@@ -24,31 +21,6 @@ class CinemaAdmin extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleEditCinema = this.handleEditCinema.bind(this);
 		this.handleDeleteCinema = this.handleDeleteCinema.bind(this);
-	}
-
-	componentDidMount() {
-		this.fetchCinemas();
-	}
-
-	fetchCinemas() {
-		this.setState({ tableLoading: true, tableError: false });
-
-		axios
-			.get("/api/cinemas")
-			.then(response => {
-				this.setState({
-					cinemas: response.data,
-					tableLoading: false,
-					tableError: false
-				});
-			})
-			.catch(error => {
-				this.setState({
-					cinemas: [],
-					tableLoading: false,
-					tableError: true
-				});
-			});
 	}
 
 	resetFormState() {
@@ -97,7 +69,8 @@ class CinemaAdmin extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		const { editing, cinemas, id, name } = this.state;
+		const { editing, id, name } = this.state;
+		const { cinemas, updateCinemas } = this.props;
 
 		if (this.isValid()) {
 			this.setState({
@@ -117,13 +90,14 @@ class CinemaAdmin extends React.Component {
 						const index = cinemas.findIndex(c => c.id === id);
 
 						this.setState({
-							formSuccess: true,
-							cinemas: [
-								...cinemas.slice(0, index),
-								{ id, name },
-								...cinemas.slice(index + 1)
-							]
+							formSuccess: true
 						});
+
+						updateCinemas([
+							...cinemas.slice(0, index),
+							{ id, name },
+							...cinemas.slice(index + 1)
+						]);
 					})
 					.catch(error => {
 						this.setState({
@@ -140,9 +114,13 @@ class CinemaAdmin extends React.Component {
 					.then(response => {
 						this.resetFormState();
 						this.setState({
-							formSuccess: true,
-							cinemas: [...cinemas, { id: response.data, name }]
+							formSuccess: true
 						});
+
+						updateCinemas([
+							...cinemas,
+							{ id: response.data, name }
+						]);
 					})
 					.catch(error => {
 						this.setState({
@@ -165,6 +143,7 @@ class CinemaAdmin extends React.Component {
 	handleDeleteCinema(cinema, cinemas) {
 		return () => {
 			const { id, name } = cinema;
+			const { updateCinemas } = this.props;
 
 			// eslint-disable-next-line no-restricted-globals
 			if (confirm(`Are you sure you want to delete '${name}'?`)) {
@@ -174,18 +153,17 @@ class CinemaAdmin extends React.Component {
 						const index = cinemas.findIndex(c => c.id === id);
 
 						this.setState({
-							cinemas: [
-								...cinemas.slice(0, index),
-								...cinemas.slice(index + 1)
-							],
-							deleteSuccess: true,
-							tableError: false
+							deleteSuccess: true
 						});
+
+						updateCinemas([
+							...cinemas.slice(0, index),
+							...cinemas.slice(index + 1)
+						]);
 					})
 					.catch(error => {
 						this.setState({
-							deleteSuccess: false,
-							tableError: true
+							deleteSuccess: false
 						});
 					});
 			}
@@ -200,11 +178,9 @@ class CinemaAdmin extends React.Component {
 			validationErrors,
 			formSuccess,
 			formError,
-			cinemas,
-			tableLoading,
-			tableError,
 			deleteSuccess
 		} = this.state;
+		const { cinemas, cinemasLoading, cinemasError } = this.props;
 
 		return (
 			<div className="mvls-cinema-admin">
@@ -222,8 +198,8 @@ class CinemaAdmin extends React.Component {
 				/>
 				<CinemaTable
 					cinemas={cinemas}
-					tableLoading={tableLoading}
-					tableError={tableError}
+					tableLoading={cinemasLoading}
+					tableError={cinemasError}
 					deleteSuccess={deleteSuccess}
 					onEditCinema={this.handleEditCinema}
 					onDeleteCinema={this.handleDeleteCinema}
