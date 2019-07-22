@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import CinemaAdmin from "./CinemaAdmin";
 import MovieAdmin from "./MovieAdmin";
+import ShowtimeAdmin from "./ShowtimeAdmin";
 
 class Admin extends React.Component {
 	constructor(props) {
@@ -102,6 +103,7 @@ class Admin extends React.Component {
 					moviesError={moviesError}
 					updateMovies={this.updateMovies}
 				/>
+				<ShowtimeAdmin cinemas={cinemas} movies={movies} />
 			</div>
 		);
 	}

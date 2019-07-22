@@ -229,6 +229,7 @@
 }
 
 .mvls-movie-admin h1,
+.mvls-showtime-admin h1,
 .mvls-cinema-admin h1 {
 	padding: 0;
 }
@@ -277,6 +278,9 @@
 
 .mvls-form input[type="text"],
 .mvls-form textarea,
+.mvls-form select,
+.mvls-form input[type="date"],
+.mvls-form input[type="time"],
 .mvls-form input[type="number"] {
 	display: block;
 	width: 100%;
