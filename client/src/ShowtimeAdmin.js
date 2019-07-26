@@ -288,8 +288,10 @@ class ShowtimeAdmin extends React.Component {
 		} = this.state;
 		const { cinemas, movies } = this.props;
 		const detailedShowtimes = showtimes.map(showtime => {
-			const cinema = cinemas.find(c => c.id === showtime.cinemaId);
-			const movie = movies.find(m => m.id === showtime.movieId);
+			const cinema = cinemas.find(
+				c => c.id === Number(showtime.cinemaId)
+			);
+			const movie = movies.find(m => m.id === Number(showtime.movieId));
 
 			return {
 				...showtime,
